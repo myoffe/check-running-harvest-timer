@@ -1,4 +1,4 @@
-This is a simple script checks if you have a currently running Harvest timer.
+This is a simple script that checks if you have a currently running Harvest timer.
 If there isn’t one, it will show a notification and activate Harvest.
 
 Inspired by http://dafacto.com/2012/how-to-never-forget-to-enable-your-time-tracking-timer/
