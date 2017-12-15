@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import requests
+import sys
+import os
+
+
+def main():
+    is_running = is_timer_running()
+    print('a timer is running' if is_running else 'no running timers')
+    sys.exit(0 if is_running else 1)
+
+
+def is_timer_running():
+    running_timers = fetch_running_timers()
+    return len(running_timers) > 0
+
+
+def fetch_running_timers():
+    response = requests.get(
+        'https://api.harvestapp.com/api/v2/time_entries',
+        params={'is_running': 'true'},
+        headers={
+            'Harvest-Account-ID': os.environ['HARVEST_ACCOUNT_ID'],
+            'Authorization': 'Bearer %s' % os.environ['HARVEST_TOKEN'],
+        }
+    )
+    return response.json()['time_entries']
+
+
+if __name__ == '__main__':
+    main()
