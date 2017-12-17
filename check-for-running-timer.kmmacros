@@ -20,10 +20,8 @@
 								<dict>
 									<key>ConditionType</key>
 									<string>Script</string>
-									<key>Path</key>
-									<string>HARVEST_ACCOUNT_ID=your_account_id_here HARVEST_TOKEN=your_token_here /path/to/script/check-running-harvest-timer/is_timer_running</string>
 									<key>ScriptConditionSourceType</key>
-									<string>ShellScriptFile</string>
+									<string>ShellScriptText</string>
 									<key>ScriptConditionType</key>
 									<string>ReturnsError</string>
 									<key>ScriptResult</key>
@@ -31,7 +29,15 @@
 									<key>ScriptTerminationStatus</key>
 									<integer>1</integer>
 									<key>ScriptText</key>
-									<string>true</string>
+									<string>#!/bin/sh
+
+HARVEST_ACCOUNT_ID=your_account_id
+export HARVEST_ACCOUNT_ID
+
+HARVEST_TOKEN=your_token
+export HARVEST_TOKEN
+
+/path/to/is_timer_running</string>
 								</dict>
 							</array>
 							<key>ConditionListMatch</key>
@@ -44,6 +50,8 @@
 						<key>ThenActions</key>
 						<array>
 							<dict>
+								<key>IsDisclosed</key>
+								<false/>
 								<key>MacroActionType</key>
 								<string>Notification</string>
 								<key>SoundName</key>
@@ -69,6 +77,8 @@
 									<key>NewFile</key>
 									<string>/Applications/Harvest.app</string>
 								</dict>
+								<key>IsDisclosed</key>
+								<false/>
 								<key>MacroActionType</key>
 								<string>ActivateApplication</string>
 								<key>ReopenWindows</key>
@@ -84,7 +94,7 @@
 				<key>CreationDate</key>
 				<real>535056558.26879698</real>
 				<key>ModificationDate</key>
-				<real>535059408.59868801</real>
+				<real>535197846.90125</real>
 				<key>Name</key>
 				<string>Check for running timer</string>
 				<key>Triggers</key>
